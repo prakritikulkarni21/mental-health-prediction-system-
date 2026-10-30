@@ -1,0 +1,124 @@
+{
+  "selected_model": "Gradient Boosting",
+  "performance": {
+    "r2_score": 0.8892,
+    "mae": 0.3276,
+    "rmse": 0.4384,
+    "cv_score": 0.8701,
+    "model_comparison": {
+      "XGBoost": {
+        "r2": 0.8872,
+        "mae": 0.3343,
+        "rmse": 0.4423,
+        "cv_score": 0.8686
+      },
+      "LightGBM": {
+        "r2": 0.857,
+        "mae": 0.3876,
+        "rmse": 0.498,
+        "cv_score": 0.8318
+      },
+      "CatBoost": {
+        "r2": 0.8501,
+        "mae": 0.393,
+        "rmse": 0.5099,
+        "cv_score": 0.8264
+      },
+      "Gradient Boosting": {
+        "r2": 0.8892,
+        "mae": 0.3276,
+        "rmse": 0.4384,
+        "cv_score": 0.8701
+      },
+      "Random Forest": {
+        "r2": 0.8827,
+        "mae": 0.3382,
+        "rmse": 0.451,
+        "cv_score": 0.8538
+      },
+      "Ridge Regression": {
+        "r2": 0.7425,
+        "mae": 0.5266,
+        "rmse": 0.6682,
+        "cv_score": 0.6959
+      }
+    }
+  },
+  "feature_importances": {
+    "Avg_Daily_Usage_Hours": 0.6609,
+    "Sleep_Hours_Per_Night": 0.1155,
+    "Daily_Unlocks": 0.0606,
+    "Most_Used_Platform": 0.0291,
+    "Study_Hours": 0.028,
+    "Physical_Activity_Hours": 0.0266,
+    "Grouped_country": 0.024,
+    "Age": 0.0198,
+    "Purpose_Of_Use": 0.0152,
+    "Academic_Level": 0.0071,
+    "Gender": 0.0069,
+    "Stress_Level": 0.0064
+  },
+  "dataset_baseline": {
+    "mean_score": 6.23,
+    "std_score": 1.27,
+    "min_score": 3.6,
+    "max_score": 9.4,
+    "percentiles": {
+      "p10": 4.6,
+      "p25": 5.1,
+      "p50": 6.1,
+      "p75": 7.1,
+      "p90": 8.0
+    }
+  },
+  "score_distribution": {
+    "bins": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10
+    ],
+    "labels": [
+      "Critical",
+      "At Risk",
+      "Struggling",
+      "Fair",
+      "Good",
+      "Thriving"
+    ],
+    "colors": [
+      "#8B0000",
+      "#D9534F",
+      "#E8A837",
+      "#F0AD4E",
+      "#5B9BD5",
+      "#4C9A78"
+    ],
+    "descriptions": [
+      "Needs immediate professional help",
+      "Significant mental health concerns",
+      "Notable challenges, needs support",
+      "Some areas need improvement",
+      "Generally healthy with room to grow",
+      "Excellent mental wellness"
+    ]
+  },
+  "explanation_factors": {
+    "Sleep_Hours_Per_Night": "Quality sleep (7-9 hrs) is crucial for mental health and resilience",
+    "Physical_Activity_Hours": "Regular exercise (1+ hrs/day) significantly improves mood and stress resilience",
+    "Stress_Level": "Perceived stress directly impacts mental health outcomes",
+    "Study_Hours": "Balanced study time (3-6 hrs) prevents burnout; too much or too little increases stress",
+    "Avg_Daily_Usage_Hours": "Excessive screen time (>6 hrs) correlates with anxiety and depression",
+    "Daily_Unlocks": "Frequent phone unlocks indicate phone addiction which affects mental focus and wellbeing"
+  },
+  "recommendations_config": {
+    "sleep_threshold_low": 6,
+    "sleep_threshold_optimal": 8,
+    "activity_threshold_min": 1,
+    "screen_time_threshold_max": 5,
+    "stress_critical": "Very High",
+    "unlocks_threshold_high": 100
+  }
+}
