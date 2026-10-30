@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧠 Ultimate Mental Health Analytics Platform v3.0</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="loader" id="loader"></div>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-container">
+        <div class="header-left">
+            <h1 class="logo">🧠 Mental Health Analytics</h1>
+            <p class="tagline">AI-Powered Wellness Intelligence</p>
+        </div>
+        <div class="header-right">
+            <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
+                <span class="theme-icon">🌓</span>
+            </button>
+            <div class="header-info">
+                <span class="model-badge" id="modelBadge">Loading...</span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- MAIN CONTAINER -->
+<main class="container">
+
+    <!-- TABS NAVIGATION -->
+    <nav class="tabs-nav">
+        <button class="tab-btn active" data-tab="assessment">
+            <span class="tab-icon">📋</span> Assessment
+        </button>
+        <button class="tab-btn" data-tab="dashboard">
+            <span class="tab-icon">📊</span> Dashboard
+        </button>
+        <button class="tab-btn" data-tab="insights">
+            <span class="tab-icon">💡</span> Insights
+        </button>
+        <button class="tab-btn" data-tab="history">
+            <span class="tab-icon">📈</span> History
+        </button>
+    </nav>
+
+    <!-- TAB 1: ASSESSMENT -->
+    <div class="tab-content active" id="assessment-tab">
+        <div class="grid-2">
+            <!-- FORM SECTION -->
+            <section class="card">
+                <h2>Mental Health Assessment</h2>
+                <form id="assessmentForm">
+                    
+                    <!-- PERSONAL INFO -->
+                    <fieldset>
+                        <legend>👤 Personal Information</legend>
+                        <div class="form-row">
+                            <input type="number" id="age" placeholder="Age" min="10" max="100" required>
+                            <select id="gender" required>
+                                <option value="">Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <input type="text" id="country" placeholder="Country" list="countries" required>
+                        <datalist id="countries">
+                            <option value="India"><option value="USA"><option value="Canada">
+                            <option value="Australia"><option value="UK"><option value="Germany">
+                            <option value="Mexico"><option value="Turkey"><option value="France">
+                        </datalist>
+                        <select id="academicLevel" required>
+                            <option value="">Academic Level</option>
+                            <option value="High School">High School</option>
+                            <option value="Undergraduate">Undergraduate</option>
+                            <option value="Graduate">Graduate</option>
+                        </select>
+                    </fieldset>
+
+                    <!-- DIGITAL HABITS -->
+                    <fieldset>
+                        <legend>📱 Digital Habits</legend>
+                        <select id="platform" required>
+                            <option value="">Most Used Platform</option>
+                            <option value="Facebook">Facebook</option>
+                            <option value="Instagram">Instagram</option>
+                            <option value="Snapchat">Snapchat</option>
+                            <option value="Twitter">Twitter</option>
+                            <option value="YouTube">YouTube</option>
+                            <option value="TikTok">TikTok</option>
+                            <option value="LinkedIn">LinkedIn</option>
+                            <option value="WhatsApp">WhatsApp</option>
+                            <option value="WeChat">WeChat</option>
+                            <option value="VKontakte">VKontakte</option>
+                            <option value="LINE">LINE</option>
+                            <option value="KakaoTalk">KakaoTalk</option>
+                        </select>
+                        <select id="purpose" required>
+                            <option value="">Purpose of Use</option>
+                            <option value="Networking">Networking</option>
+                            <option value="Education">Education</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="News">News</option>
+                        </select>
+                        <div class="form-row">
+                            <div class="input-with-unit">
+                                <input type="number" id="screenTime" placeholder="Daily Screen Time" min="0" max="24" step="0.1" required>
+                                <span class="unit">hrs</span>
+                            </div>
+                            <input type="number" id="unlocks" placeholder="Phone Unlocks" min="0" required>
+                        </div>
+                    </fieldset>
+
+                    <!-- LIFESTYLE -->
+                    <fieldset>
+                        <legend>🏃 Lifestyle & Wellness</legend>
+                        <div class="form-row">
+                            <div class="input-with-unit">
+                                <input type="number" id="studyHours" placeholder="Study Hours" min="0" max="24" step="0.1" required>
+                                <span class="unit">hrs</span>
+                            </div>
+                            <div class="input-with-unit">
+                                <input type="number" id="activity" placeholder="Physical Activity" min="0" max="24" step="0.1" required>
+                                <span class="unit">hrs</span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="input-with-unit">
+                                <input type="number" id="sleep" placeholder="Sleep Per Night" min="0" max="24" step="0.1" required>
+                                <span class="unit">hrs</span>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- STRESS LEVEL -->
+                    <fieldset>
+                        <legend>😰 Stress Assessment</legend>
+                        <div class="stress-buttons">
+                            <button type="button" class="stress-btn" data-stress="Low">
+                                <span class="stress-icon">😊</span> Low
+                            </button>
+                            <button type="button" class="stress-btn" data-stress="Medium">
+                                <span class="stress-icon">😐</span> Medium
+                            </button>
+                            <button type="button" class="stress-btn" data-stress="High">
+                                <span class="stress-icon">😟</span> High
+                            </button>
+                            <button type="button" class="stress-btn" data-stress="Very High">
+                                <span class="stress-icon">😰</span> Very High
+                            </button>
+                        </div>
+                        <input type="hidden" id="stress" required>
+                    </fieldset>
+
+                    <button type="submit" class="btn-primary btn-large">
+                        <span class="btn-text">Generate Assessment</span>
+                        <span class="btn-spinner"></span>
+                    </button>
+                </form>
+            </section>
+
+            <!-- RESULTS SECTION -->
+            <section class="card" id="resultsSection" style="display: none;">
+                <div class="results-header">
+                    <h2>Your Assessment Results</h2>
+                    <button class="btn-secondary" id="exportBtn">📥 Export Report</button>
+                </div>
+
+                <!-- SCORE GAUGE -->
+                <div class="score-container">
+                    <div class="gauge-wrapper">
+                        <canvas id="scoreGauge"></canvas>
+                    </div>
+                    <div class="score-info">
+                        <div class="score-number" id="scoreNumber">0.0</div>
+                        <div class="score-band" id="scoreBand">—</div>
+                        <div class="percentile-info" id="percentileInfo">—</div>
+                    </div>
+                </div>
+
+                <!-- WELLNESS METRICS -->
+                <div class="wellness-grid">
+                    <div class="metric-card">
+                        <span class="metric-label">Mental Health</span>
+                        <div class="metric-bar">
+                            <div class="metric-fill" id="mhBar"></div>
+                        </div>
+                        <span class="metric-value" id="mhValue">0%</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-label">Wellness Score</span>
+                        <div class="metric-bar">
+                            <div class="metric-fill" id="wellnessBar"></div>
+                        </div>
+                        <span class="metric-value" id="wellnessValue">0%</span>
+                    </div>
+                </div>
+
+                <!-- RISK ASSESSMENT -->
+                <div class="risk-alert" id="riskAlert"></div>
+
+                <!-- FACTORS BREAKDOWN -->
+                <div class="section-title">📊 What Influenced Your Score</div>
+                <div class="factors-breakdown" id="factorsBreakdown"></div>
+
+                <!-- RECOMMENDATIONS -->
+                <div class="section-title">🎯 Personalized Recommendations</div>
+                <div class="recommendations" id="recommendations"></div>
+
+                <!-- SUMMARY -->
+                <div class="summary-box" id="summaryBox"></div>
+            </section>
+        </div>
+    </div>
+
+    <!-- TAB 2: DASHBOARD -->
+    <div class="tab-content" id="dashboard-tab">
+        <div class="dashboard-grid">
+            <!-- METRICS CARDS -->
+            <div class="metrics-row" id="metricsRow"></div>
+
+            <!-- CHARTS -->
+            <div class="grid-2">
+                <div class="card">
+                    <h3>📈 Wellness Trend (7 Days)</h3>
+                    <canvas id="trendChart"></canvas>
+                </div>
+                <div class="card">
+                    <h3>📊 Score Distribution</h3>
+                    <canvas id="distributionChart"></canvas>
+                </div>
+            </div>
+
+            <!-- MODEL COMPARISON -->
+            <div class="card">
+                <h3>🤖 AI Model Performance</h3>
+                <canvas id="modelChart"></canvas>
+                <div class="model-info" id="modelInfo"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 3: INSIGHTS -->
+    <div class="tab-content" id="insights-tab">
+        <div class="grid-2">
+            <div class="card">
+                <h3>🧠 Feature Importance</h3>
+                <div class="feature-list" id="featureList"></div>
+            </div>
+            <div class="card">
+                <h3>📋 Key Statistics</h3>
+                <div class="stats-list" id="statsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 4: HISTORY -->
+    <div class="tab-content" id="history-tab">
+        <div class="card">
+            <h3>📅 Assessment History</h3>
+            <div class="history-list" id="historyList"></div>
+            <div class="history-chart-container">
+                <canvas id="historyChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>🧠 Ultimate Mental Health Analytics Platform v3.0 | AI-Powered Wellness Intelligence</p>
+    <p style="font-size: 0.85rem; opacity: 0.7;">⚠️ For informational purposes only. Not a clinical diagnosis. Seek professional help if needed.</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
